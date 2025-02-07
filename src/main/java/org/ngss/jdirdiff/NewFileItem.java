@@ -20,8 +20,8 @@ public class NewFileItem extends OneFileItem {
         super(file);
     }
 
+    @Override
     public String toString() {
         return "New File: " + getFile().toString();
     }
-
 }

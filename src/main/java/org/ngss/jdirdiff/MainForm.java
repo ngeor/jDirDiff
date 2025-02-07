@@ -6,12 +6,11 @@
 
 package org.ngss.jdirdiff;
 
-import javax.swing.*;
-
 import java.awt.*;
 import java.io.*;
 import java.util.Arrays;
 import java.util.Comparator;
+import javax.swing.*;
 
 /**
  * Main form.
@@ -46,6 +45,7 @@ public class MainForm extends JFrame {
 
         setTitle("jDirDiff");
         addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 exitForm(evt);
             }
@@ -53,6 +53,7 @@ public class MainForm extends JFrame {
 
         btnCompare.setText("Compare");
         btnCompare.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompareActionPerformed(evt);
             }
@@ -62,6 +63,7 @@ public class MainForm extends JFrame {
 
         btnMakeZip.setText("Make Zip");
         btnMakeZip.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMakeZipActionPerformed(evt);
             }
@@ -106,7 +108,6 @@ public class MainForm extends JFrame {
             File f2 = (File) o2;
             return f1.getName().compareTo(f2.getName());
         }
-
     }
 
     private boolean equalFiles(File oldFile, File newFile) throws FileNotFoundException, IOException {
@@ -203,8 +204,12 @@ public class MainForm extends JFrame {
     }
 
     private void confirmCompareDirectories(File oldDir, File newDir) {
-        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(
-            this, "Compare " + oldDir + " with " + newDir + "?", "Confirmation", JOptionPane.YES_NO_OPTION)) {
+        if (JOptionPane.YES_OPTION
+                == JOptionPane.showConfirmDialog(
+                        this,
+                        "Compare " + oldDir + " with " + newDir + "?",
+                        "Confirmation",
+                        JOptionPane.YES_NO_OPTION)) {
             ((DefaultListModel) lstFiles.getModel()).clear();
             compareDirectories(oldDir, newDir);
             infoMsg("Finished");
@@ -247,7 +252,7 @@ public class MainForm extends JFrame {
          * Gets the component.
          */
         public Component getListCellRendererComponent(
-            JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             if (value instanceof OneFileItem) {
                 setText(value.toString());
                 if (value instanceof NewFileItem) {
@@ -268,5 +273,4 @@ public class MainForm extends JFrame {
             return this;
         }
     }
-
 }

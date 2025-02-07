@@ -20,8 +20,8 @@ public class OldFileItem extends OneFileItem {
         super(file);
     }
 
+    @Override
     public String toString() {
         return "Deleted File: " + getFile().toString();
     }
-
 }
